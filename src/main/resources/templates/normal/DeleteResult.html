@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="normal/base.html::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+
+
+
+<section>
+
+    <div th:if="${name != null}">
+        <h1 class="text-white" style="text-align: center;">Contact Deleted Successfully </h1>
+        <h3 class="text-white" style="text-align: center; margin-top: 6mm; " > <span th:text="${name} + ' : ' " ></span> has removed successfully </h3>
+        <h3 class="text-white" style="text-align: center; margin-top: 5mm; " > from the contact list</h3>
+        <div style="text-align: center; margin-top: 5mm;">
+            <img  src="/images/delete.jpg" height="200" width="300">
+        </div>
+        <div style="text-align: center;  margin-top: 10mm;">
+            <a th:href="@{/user/ViewContacts/0}"><button style="width: 5cm; "
+                                                         class="btn btn-primary"  >View Contacts</button></a>
+        </div>
+
+    </div>
+
+    <div th:unless="${name != null}">
+
+        <div class=" text-center mt-3" style="block-size: 3cm; background-color: red;
+        margin-left: 2cm; margin-right: 2cm; ">
+
+            <h1 class="text-white">You don't have the permission to Delete this contact</h1>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+</section>
+
+</body>
+</html>

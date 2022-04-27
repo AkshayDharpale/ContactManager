@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="normal/base.html::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+
+<section >
+
+    <div class="card ml-3 mr-3">
+        <div class="card-body">
+
+            <h1 class="text-center"> View Contacts</h1>
+
+            <div  class="search-container my-4">
+
+                <input id="search-input" onkeyup="search()" type="text" class="form-control" placeholder="Search your contacts">
+                <div class="search-result">
+
+                </div>
+
+            </div>
+
+            <table class="table mt-2">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Email Id</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${contacts}" >
+                    <th scope="row">
+                        <img  class="imagefit" th:src="@{'/images/' + ${c.imageUrl}}" >
+
+                        <a class="text-dark"  th:href="@{'/user/ContactDetails/' + ${c.id}}">
+                            <span class="text-capitalize" th:text="${c.name}"></span>
+                        </a>
+
+                    </th>
+
+                    <td><span th:text="${c.phoneNumber}"></span></td>
+
+                    <td><span th:text="${c.email}"></span></td>
+
+                    <td><span class="text-capitalize" th:text="${c.work}"></span></td>
+                    <td>
+                        <a th:href="@{'/user/ContactDetails/' + ${c.id}}" class="text-dark"><i class="fas fa-eye mr-2" ></i></a>
+                        <a th:href="@{'/user/UpdateDetails/' + ${c.id}}" class="text-dark"><i class="fas fa-edit mr-2"></i></i></a>
+                        <a href="# " th:onclick="|deleteBox(${c.id})|"  class="text-dark"><i class="fas fa-trash "></i></i></a>
+
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+<!--            pagination concept-->
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    <li th:if="${CurrentPage != 0}" th:href="@{'/user/ViewContacts/' + ${CurrentPage-1}}" class="page-item"><a class="page-link" href="#">Previous</a></li>
+
+                    <li th:each="e:${#numbers.sequence(1, TotalPages)}" th:classappend="${CurrentPage == e-1}?'active': ' '"  class="page-item" >
+
+                        <a th:href="@{'/user/ViewContacts/' + ${e-1}}" class="page-link" >
+                            <span th:text="${e}"></span>
+                        </a>
+
+                    </li>
+
+
+                    <li th:if="${CurrentPage+1 != TotalPages}" class="page-item">
+                        <a th:href="@{'/user/ViewContacts/' + ${CurrentPage+1}}"
+                           class="page-link"
+                           href="#">Next</a></li>
+
+                </ul>
+            </nav>
+
+
+        </div>
+    </div>
+
+
+</section>
+
+
+
+</body>
+</html>

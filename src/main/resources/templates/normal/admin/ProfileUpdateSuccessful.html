@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"
+      th:replace="normal/base.html::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+
+<section >
+
+    <div class=" text-center mt-3 alert " style=" block-size: 3cm ;
+        margin-left: 6.5cm; margin-right: 6.5cm; background-color:rgb(131, 177, 86) ">
+
+        <h1 class="text-white">Your profile updated Successfully</h1>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 5mm;">
+        <img  src="/images/success.jpg" height="200" width="300">
+    </div>
+
+    <div style="text-align: center;  margin-top: 10mm;">
+        <a th:href="@{/user/admin/YourProfile}"><button style="width: 5cm; "
+                                                     class="btn btn-primary"  >Your Profile</button></a>
+    </div>
+
+</section>
+
+
+
+</body>
+</html>
